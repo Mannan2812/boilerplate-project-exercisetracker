@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
+const myApp = require('./myApp')
 const cors = require('cors')
 require('dotenv').config()
 
+app.use(myApp)
 app.use(cors())
 app.use(express.static('public'))
 app.get('/', (req, res) => {
