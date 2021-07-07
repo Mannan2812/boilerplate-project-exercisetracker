@@ -16,7 +16,7 @@ app.post('/api/users', (req, res) => {
     })
     u.save('username _id', (err, data) => {
         if(err) return res.send(err)
-        res.json({
+        res.send({
             username: data.username,
             _id : data._id
         })
