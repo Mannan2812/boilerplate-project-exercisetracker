@@ -19,13 +19,15 @@ app.post('/api/users', (req, res) => {
             const u = new User({
                 username : req.body.username
             })
-            u.save('username _id', (err, data) => {
+            u.save((err, data) => {
                 if(err) return res.send(err)
-                res.send({
-                    username: data.username,
-                    _id : data._id
+                User.find({
+                    username : req.body.username
+                }).select('username _id').exec((err, data) => {
+                    res.send(data[0])
                 })
             })
+            
         }
     })
 })
