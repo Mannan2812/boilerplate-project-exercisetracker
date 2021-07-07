@@ -11,20 +11,22 @@ app.use(bodyParser.urlencoded({
 
 
 app.post('/api/users', (req, res) => {
-    const u = new User({
-        username : req.body.username
-    })
     User.find({
         username : req.body.username
     }, (err, data) => {
-        if(data) return res.send("Username already taken")
-    })
-    u.save('username _id', (err, data) => {
-        if(err) return res.send(err)
-        res.send({
-            username: data.username,
-            _id : data._id
-        })
+        if(data.length != 0) return res.send("Username already taken")
+        else{
+            const u = new User({
+                username : req.body.username
+            })
+            u.save('username _id', (err, data) => {
+                if(err) return res.send(err)
+                res.send({
+                    username: data.username,
+                    _id : data._id
+                })
+            })
+        }
     })
 })
 
