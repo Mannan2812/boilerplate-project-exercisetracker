@@ -14,6 +14,11 @@ app.post('/api/users', (req, res) => {
     const u = new User({
         username : req.body.username
     })
+    User.find({
+        username : req.body.username
+    }, (err, data) => {
+        if(data) return res.send("Username already taken")
+    })
     u.save('username _id', (err, data) => {
         if(err) return res.send(err)
         res.send({
