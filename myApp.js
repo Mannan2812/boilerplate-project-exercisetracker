@@ -11,7 +11,7 @@ app.post('/api/users', bodyParser.urlencoded({ extended : false}), (req, res) =>
         username : req.body.username
     })
     u.save((err, data) => {
-        if(!error)
+        if(!err)
         {
             resObj = {}
             resObj['username'] = data.username
