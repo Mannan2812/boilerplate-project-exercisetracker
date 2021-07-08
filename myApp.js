@@ -7,24 +7,19 @@ const Exercise = require('./model').Exercise
 
 
 app.post('/api/users', bodyParser.urlencoded({ extended : false}), (req, res) => {
-    User.find({
+    const u = new User({
         username : req.body.username
-    }, (err, data) => {
-        if(data.length != 0) return res.send("Username already taken")
-        else{
-            const u = new User({
-                username : req.body.username
-            })
-            u.save((err, data) => {
-                if(err) return res.send(err)
-                res.json({
-                    username: data.username,
-                    _id : data._id
-                })
-            })
-            
-        }
     })
+    u.save((err, data) => {
+        if(!error)
+        {
+            resObj = {}
+            resObj['username'] = data.username
+            resObj['_id'] = data.id
+            res.json(resObj)
+
+        }
+    }) 
 })
 
 app.get('/api/users', (req, res) => {
