@@ -4,13 +4,9 @@ const bodyParser = require('body-parser')
 const User = require('./model').User
 const Exercise = require('./model').Exercise
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-    extended: false
-}))
 
 
-app.post('/api/users', (req, res) => {
+app.post('/api/users', bodyParser.urlencoded({ extended : false}), (req, res) => {
     User.find({
         username : req.body.username
     }, (err, data) => {
