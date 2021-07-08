@@ -4,12 +4,8 @@ const myApp = require('./myApp')
 const cors = require('cors')
 require('dotenv').config()
 
-app.use(myApp)
 app.use(cors())
-app.use(function(req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'https://freecodecamp.org');
-})
+app.use(myApp)
 app.use(express.static('public'))
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
