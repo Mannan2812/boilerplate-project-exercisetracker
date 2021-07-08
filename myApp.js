@@ -15,7 +15,7 @@ app.post('/api/users', bodyParser.urlencoded({ extended : false}), (req, res) =>
         {
             resObj = {}
             resObj['username'] = data.username
-            resObj['_id'] = data.id
+            resObj['_id'] = data.id.toString()
             res.json(resObj)
 
         }
