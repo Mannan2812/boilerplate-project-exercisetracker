@@ -21,10 +21,9 @@ app.post('/api/users', (req, res) => {
             })
             u.save((err, data) => {
                 if(err) return res.send(err)
-                User.find({
-                    username : req.body.username
-                }).select('username _id').exec((err, data) => {
-                    res.send(data[0])
+                res.json({
+                    username: data.username,
+                    _id : data._id
                 })
             })
             
