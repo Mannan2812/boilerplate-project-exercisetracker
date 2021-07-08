@@ -43,7 +43,7 @@ function getFormattedDate(specifiedDate)
     return `${day} ${month} ${number} ${year}`
 }
 
-app.post('/api/users/:_id/exercises', (req, res) => {
+app.post('/api/users/:_id/exercises', bodyParser.urlencoded({ extended : false}), (req, res) => {
     var date = (req.body.date ? (req.body.date) : (new Date()))
     const e = new Exercise({
         userId : req.params._id,
