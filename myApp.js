@@ -68,7 +68,7 @@ app.post('/api/users/:_id/exercises', bodyParser.urlencoded({ extended : false})
 
 
 app.get('/api/users/:_id/logs', (req, res) => {
-    let params = (new URL(req.get('host') + req.url)).searchParams;
+    let params = (req.protocol + "://" + new URL(req.get('host') + req.url)).searchParams;
     let from = params.get('from')
     let to  = params.get('to')
     let limit = params.get('limit')
